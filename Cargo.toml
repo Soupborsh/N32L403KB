@@ -1,0 +1,9 @@
+[package]
+name = "N32L403KB"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cortex-m = "0.7.7"
+cortex-m-rt = "0.7.6"
+panic-halt = "1.0.0"
