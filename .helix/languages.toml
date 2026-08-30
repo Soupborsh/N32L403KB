@@ -1,0 +1,4 @@
+[language-server.rust-analyzer.config]
+cargo.target = "thumbv8m.main-none-eabihf"
+cargo.allTargets = false
+runnables.extraArgs = ["--target=host-tuple"]

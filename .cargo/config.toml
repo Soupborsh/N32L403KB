@@ -17,8 +17,13 @@ rustflags = [
   "link-arg=--nmagic",
   "-C",
   "link-arg=-Tlink.x",
-#   "-C",
-#   "link-arg=-Tdefmt.x",
+  "-C",
+  "link-arg=-Tdefmt.x",
   "-C",
   "target-cpu=cortex-m4",
 ]
+
+runner = "probe-rs run --chip N32L403KB"
+
+[env]
+DEFMT_LOG="info"
