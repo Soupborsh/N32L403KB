@@ -8,7 +8,7 @@ MEMORY
 _stext = ORIGIN(FLASH) + 0x808;
 
 SECTIONS {
-  .boot_sig ORIGIN(FLASH) + 0x800 : {
+  .start_block ORIGIN(FLASH) + 0x800 : {
     KEEP(*(.boot_sig))
   } > FLASH
 }
