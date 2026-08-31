@@ -13,3 +13,8 @@ It copies `memory_app.x` to `memory.x`. If `app` feature is disabled it copies `
 `memory.x` should not be modified by hand.
 
 TODO: Instructions on getting bin from elf, packing into .atk file.
+
+## License
+
+My code is 'GPL-3.0-only'. The `link_ram.x` file is 'MIT OR Apache-2.0'.
+This file is from https://github.com/embassy-rs/teleprobe/blob/main/link_ram_cortex_m.x
