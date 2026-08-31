@@ -1,21 +1,21 @@
 # T90 rust code template.
 
 There are 3 options to build this.
-- in_ram
+- in_ram (SWD required)
 - app
-- bare (default)
+- bare (default, SWD required)
 
 ### in_ram
 
 Easiest, and AFAIK safest way.
 
-Enabling `in_ram` feature, makes firmware be linked to be launched from SRAM.
+Enabling `in_ram` feature, makes firmware be linked to be run from SRAM.
 
 You can build and run like this:
 ```shell
 cargo run --release -F in_ram
 ```
-It will use `probe-rs`.
+uses [probe-rs](#probe-rs).
 
 ### app
 
@@ -23,7 +23,7 @@ Warning: working unconfirmed.
 
 Used to create fw that official T90 bootloader accepts in update mode.
 It can be made into .atk file.
-In constart to `bare` it goes to 0x5000 offset in firmware.
+In constart to `bare` it goes to 0x5000 offset in FLASH.
 
 To build as an `app` enable `app` feature:
 
@@ -37,10 +37,11 @@ TODO: Instructions on getting bin from elf, packing into .atk file, flashing.
 
 Warning: until probe-rs flash algo is broken, this soft bricks the MCU.
 
-This writes to root of flash and overwrites the stock "update mode" bootloader.
+This writes to root of FLASH and overwrites the stock "update mode" bootloader.
 ```shell
 cargo run --release
 ```
+uses [probe-rs](#probe-rs).
 
 #### About build modes
 
