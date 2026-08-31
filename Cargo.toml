@@ -18,3 +18,4 @@ panic-halt = "1.0.0"
 
 [features]
 app = []
+in_ram = ["n32l40x-pac/rt"]

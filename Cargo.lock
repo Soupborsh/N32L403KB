@@ -3,18 +3,6 @@
 version = 4
 
 [[package]]
-name = "N32L403KB"
-version = "0.1.0"
-dependencies = [
- "cortex-m",
- "cortex-m-rt",
- "defmt",
- "defmt-rtt",
- "n32l40x-pac",
- "panic-halt",
-]
-
-[[package]]
 name = "bare-metal"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -150,6 +138,7 @@ version = "0.1.0"
 source = "git+https://github.com/Soupborsh/n32l40x-pac.git#8b0aff4e315837df740762a379b4496c3c8a8067"
 dependencies = [
  "cortex-m",
+ "cortex-m-rt",
 ]
 
 [[package]]
@@ -235,6 +224,18 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "t90_template"
+version = "0.1.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "defmt",
+ "defmt-rtt",
+ "n32l40x-pac",
+ "panic-halt",
 ]
 
 [[package]]
