@@ -3,8 +3,9 @@ name = "t90_template"
 description = "Rust project for Alientek T90 soldering iron with N32L403KB MCU."
 version = "0.1.0"
 edition = "2024"
-license = "GPL-3.0-only"
+license = "GPL-3.0-only AND Apache-2.0"
 authors = ["Soupborsh"]
+repo = "https://github.com/Soupborsh/t90_rust_template.git"
 
 [dependencies]
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
@@ -18,3 +19,4 @@ panic-halt = "1.0.0"
 
 [features]
 app = []
+in_ram = ["n32l40x-pac/rt"]
