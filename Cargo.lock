@@ -147,6 +147,7 @@ checksum = "361a90feb7004eca4019fb28352a9465666b24f840f5c3cddf0ff13920590b89"
 [[package]]
 name = "n32l40x-pac"
 version = "0.1.0"
+source = "git+https://github.com/Soupborsh/n32l40x-pac.git#8b0aff4e315837df740762a379b4496c3c8a8067"
 dependencies = [
  "cortex-m",
 ]

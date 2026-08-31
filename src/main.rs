@@ -9,6 +9,7 @@ use panic_halt as _;
 use cortex_m_rt::entry;
 extern crate n32l40x_pac as pac;
 
+#[cfg(feature = "app")]
 #[used]
 #[unsafe(link_section = ".start_block")]
 static BOOT_SIG: [u8; 8] = [0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF];
