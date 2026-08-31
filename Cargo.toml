@@ -1,7 +1,10 @@
 [package]
-name = "N32L403KB"
+name = "t90_template"
+description = "Rust project for Alientek T90 soldering iron with N32L403KB MCU."
 version = "0.1.0"
 edition = "2024"
+license = "GPL-3.0-only"
+authors = ["Soupborsh"]
 
 [dependencies]
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
