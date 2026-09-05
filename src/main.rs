@@ -47,42 +47,43 @@ static BOOT_SIG: [u8; 8] = [0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF];
 
 #[entry]
 fn main() -> ! {
-    RCC.RCC_CTRL().modify(|v| v.set_HSIEN(true));
+    RCC.ctrl().modify(|v| v.set_hsien(true));
     delay(1000);
     // is write protection status bit per page
-    let wrp = FLASH.FLASH_WRP().read().0;
-    info!("wrp: {:b}", wrp);
-    let rp1 = FLASH.FLASH_OB().read().RDPRT1();
-    let rp2 = FLASH.FLASH_OB().read().RDPRT2();
+    // Why it still prints all zeros but can program?
+    // let wrp = FLASH.wrp().read();
+    // info!("wrp: {:b}", wrp);
+    let rp1 = FLASH.ob().read().rdprt1();
+    let rp2 = FLASH.ob().read().rdprt2();
     dbg!(rp1, rp2);
     // Unlock FLASH
     info!("Will unlock FLASH");
-    FLASH.FLASH_KEY().write(|v| v.set_FKEY(0x45670123));
-    FLASH.FLASH_KEY().write(|v| v.set_FKEY(0xCDEF89AB));
+    FLASH.key().write_value(0x45670123);
+    FLASH.key().write_value(0xCDEF89AB);
     flash_clear_sts_flag();
     wait_for_last_opt(0x2000).unwrap();
-    FLASH.FLASH_OPTKEY().write(|v| v.set_OPTKEY(0x45670123));
-    FLASH.FLASH_OPTKEY().write(|v| v.set_OPTKEY(0xCDEF89AB));
+    FLASH.optkey().write_value(0x45670123);
+    FLASH.optkey().write_value(0xCDEF89AB);
     // wait_for_last_opt(0x2000).unwrap();
     // info!("Unlocked");
-    FLASH.FLASH_CTRL().modify(|v| v.set_OPTER(true));
+    FLASH.ctrl().modify(|v| v.set_opter(true));
     // wait_for_last_opt(0x2000).unwrap();
     // info!("Set for erase");
-    FLASH.FLASH_CTRL().modify(|v| v.set_START(true));
+    FLASH.ctrl().modify(|v| v.set_start(true));
     wait_for_last_opt(0xB0000).unwrap();
     flash_clear_sts_flag();
-    FLASH.FLASH_CTRL().modify(|v| v.set_OPTER(false));
+    FLASH.ctrl().modify(|v| v.set_opter(false));
     info!("Erased OB");
-    FLASH.FLASH_CTRL().modify(|v| v.set_OPTPG(true));
+    FLASH.ctrl().modify(|v| v.set_optpg(true));
     unsafe {
         let ob1 = read_volatile(0x1FFF_F800 as *mut u32);
         core::ptr::write_volatile(0x1FFF_F800 as *mut u32, (ob1 & 0xFFFF_0000) | 0x5AA5)
     };
-    // wait_for_last_opt(0x2000).unwrap();
-    FLASH.FLASH_WRP().write(|v| v.set_WRPT(0));
+    wait_for_last_opt(0x2000).unwrap();
+    FLASH.wrp().write_value(0);
     wait_for_last_opt(0x2000).unwrap();
     info!("Write protection disbaled! Reset now.");
-    FLASH.FLASH_CTRL().modify(|v| v.set_OPTPG(false));
+    FLASH.ctrl().modify(|v| v.set_optpg(false));
     loop {
         info!("Amongus");
         delay(500_000);
@@ -90,12 +91,12 @@ fn main() -> ! {
 }
 
 fn flash_clear_sts_flag() {
-    FLASH.FLASH_STS().modify(|v| {
-        v.set_PGERR(false);
-        v.set_PVERR(false);
-        v.set_WRPERR(false);
-        v.set_EOP(false);
-        v.set_EVERR(false);
+    FLASH.sts().modify(|v| {
+        v.set_pgerr(false);
+        v.set_pverr(false);
+        v.set_wrperr(false);
+        v.set_eop(false);
+        v.set_everr(false);
         //v.set_ECCERR(false);
     });
 }
@@ -114,5 +115,5 @@ fn wait_for_last_opt(timeout: u32) -> Result<(), ()> {
 }
 
 fn flash_is_busy() -> bool {
-    FLASH.FLASH_STS().read().BUSY()
+    FLASH.sts().read().busy()
 }
