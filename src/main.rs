@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-use cortex_m::asm::nop;
+use cortex_m::asm::delay;
 use defmt::info;
 use defmt_rtt as _;
 use panic_halt as _;
@@ -18,8 +18,6 @@ static BOOT_SIG: [u8; 8] = [0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF];
 fn main() -> ! {
     loop {
         info!("Amongus");
-        for _ in 0..500_000 {
-            nop();
-        }
+        delay(500_000);
     }
 }

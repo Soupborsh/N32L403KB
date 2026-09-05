@@ -5,7 +5,7 @@ version = "0.1.0"
 edition = "2024"
 license = "GPL-3.0-only AND Apache-2.0"
 authors = ["Soupborsh"]
-repo = "https://github.com/Soupborsh/t90_rust_template.git"
+repository = "https://github.com/Soupborsh/t90_rust_template.git"
 
 [dependencies]
 cortex-m = { version = "0.7.9", features = ["critical-section-single-core"] }
@@ -20,3 +20,7 @@ panic-halt = "1.0.0"
 [features]
 app = []
 in_ram = ["n32l40x-pac/rt"]
+
+[profile.dev]
+opt-level = 3
+overflow-checks = false
