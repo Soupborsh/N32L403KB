@@ -135,7 +135,7 @@ checksum = "361a90feb7004eca4019fb28352a9465666b24f840f5c3cddf0ff13920590b89"
 [[package]]
 name = "n32l40x-pac"
 version = "0.1.0"
-source = "git+https://github.com/Soupborsh/n32l40x-pac.git#8b0aff4e315837df740762a379b4496c3c8a8067"
+source = "git+https://github.com/Soupborsh/n32l40x-pac.git#0826214e954c2e1297fdf812aa191d9dff0e8ef4"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -217,9 +217,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "3.0.4"
+version = "3.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6275cddf4610d1775e6d1fe9469b2e77d0f39fd98fb7450901b821e0c53649f"
+checksum = "12df2e0110f65b775f769bb17ef989067a1d931b2eb822bd4346631eeada89f9"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -255,7 +255,7 @@ checksum = "bc04cd3e1236dd4a98afca4569f2deb3f120e5422a4023be2cb683f8486292af"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 3.0.4",
+ "syn 3.0.5",
 ]
 
 [[package]]
