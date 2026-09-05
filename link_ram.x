@@ -94,7 +94,7 @@ SECTIONS
     KEEP(*(.vector_table.interrupts)); /* this is the `__INTERRUPTS` symbol */
   } > RAM
 
-  PROVIDE(_stext = ADDR(.vector_table) + SIZEOF(.vector_table));
+  PROVIDE(_stext = ALIGN(ADDR(.vector_table) + SIZEOF(.vector_table), 8));
 
   /* ### .text */
   .text _stext :
